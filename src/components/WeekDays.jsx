@@ -1,7 +1,28 @@
 import React, { useState } from "react";
 import TimeSelector from "./TimeSelector";
+import Calender from "./Calender";
 
 function WeekDays({ currentDate, currentTimeInTimezone }) {
+  const [data, setData] = useState([
+    {
+      Id: 101,
+      Name: "test",
+      Date: "2023-07-20",
+      Time: "10:30AM",
+      Day: "Monday",
+    },
+    {
+      Id: 102,
+      Name: "test 1",
+      Date: "2023-07-21",
+      Time: "09:00PM",
+      Day: "Tuesday",
+    },
+  ]);
+  const [show, setShow] = useState(false);
+
+  const id = data[data.length - 1].Id;
+
   const [selectedDay, setSelectedDay] = useState(
     currentDate.format("dddd, MMMM Do")
   );
@@ -14,7 +35,7 @@ function WeekDays({ currentDate, currentTimeInTimezone }) {
   }
 
   let cd = currentTimeInTimezone.split(",")[0].slice(0, -5);
-  console.log(selectedDay);
+
   return (
     <>
       <div className="w-full mt-5">
@@ -31,9 +52,27 @@ function WeekDays({ currentDate, currentTimeInTimezone }) {
               <p>{day.split(",")[0]}</p>
               <p>{day.split(",")[1]}</p>
             </div>
-            <TimeSelector />
+            <TimeSelector
+              day={day}
+              id={id}
+              setData={setData}
+              data={data}
+              currentTimeInTimezone={currentTimeInTimezone}
+            />
           </div>
         ))}
+        <Calender
+          show={show}
+          setShow={setShow}
+          weekdays={weekdays}
+          data={data}
+        />
+        <button
+          className="border mt-4 m-8 bg-blue-500 text-white font-bold w-[50%]  border-black mr-2 p-2 rounded-md  hover:bg-black hover:text-white"
+          onClick={() => setShow(true)}
+        >
+          Calender
+        </button>
       </div>
     </>
   );

@@ -3,3 +3,13 @@
   padding:0;
   box-sizing: border-box;
 }
+
+.neuro{
+  min-height: 95vh;
+  background-color: gray;
+  margin:0 auto;
+  border-radius: 50px;
+background: #e0e0e0;
+box-shadow:  35px 35px 50px #bebebe,
+             -35px -35px 50px #ffffff;
+}
